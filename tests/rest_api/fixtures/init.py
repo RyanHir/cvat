@@ -110,7 +110,7 @@ def dump_db():
                     --indent 2 --natural-foreign \
                     --exclude=auth.permission --exclude=contenttypes".split(),
                 stdout=f, check=True
-            )
+            ) # nosec
         except CalledProcessError:
             pytest.exit("Database dump failed.\n")
 

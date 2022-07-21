@@ -104,13 +104,13 @@ def dump_db():
         pytest.exit("CVAT is not running")
     with open(osp.join(CVAT_DB_DIR, "data.json"), "w") as f:
         try:
-            run(
+            run( # nosec
                 "docker exec test_cvat_1 \
                     python manage.py dumpdata \
                     --indent 2 --natural-foreign \
                     --exclude=auth.permission --exclude=contenttypes".split(),
                 stdout=f, check=True
-            ) # nosec
+            )
         except CalledProcessError:
             pytest.exit("Database dump failed.\n")
 

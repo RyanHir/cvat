@@ -190,7 +190,8 @@ def services(request):
         delete_compose_files()
         pytest.exit("All generated test files have been deleted", returncode=0)
 
-    if not all([osp.exists(f) for f in CONTAINER_NAME_FILES]):
+    if not all([osp.exists(f) for f in CONTAINER_NAME_FILES]) or rebuild:
+        delete_compose_files()
         create_compose_files()
 
     if stop:
